@@ -1,7 +1,7 @@
 services:
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
-    container_name: supercatalogue_es_dev
+    container_name: fc4es-elasticsearch
     environment:
       - discovery.type=single-node
       - xpack.security.enabled=false

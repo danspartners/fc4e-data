@@ -31,6 +31,14 @@ if "Facets" in df.columns:
                 if (new_key == "iso" or new_key == "entity") and isinstance(value, str):
                     value = value.split(",")
 
+                if (new_key == "globally_unique"):
+                    if value == "Yes":
+                        value = True
+                    elif value == "No":
+                        value = False
+                    else:
+                        value = None
+
                 # Convert certain string numbers to integers (handle " " as null)
                 if new_key in {"count", "managers", "start_date", "recommended_by", "number_of_resolvers"}:
                     if value == " ":
