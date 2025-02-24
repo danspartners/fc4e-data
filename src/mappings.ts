@@ -21,7 +21,8 @@ export const mappings: MappingTypeMapping = {
             type: 'object',
             properties: {
                 name: { type: 'keyword' },
-                iso: { type: 'keyword' }
+                iso: { type: 'keyword' },
+                location: { type: 'geo_point' }
             }
         },
         identifier: { type: 'keyword' },
