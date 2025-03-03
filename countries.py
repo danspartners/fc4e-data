@@ -1,4 +1,4 @@
-{
+iso3_coordinates = {
     "ALB": {
       "lat": 41,
       "lon": 20
