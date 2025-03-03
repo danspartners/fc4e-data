@@ -39,6 +39,25 @@ if "Facets" in df.columns:
                     else:
                         value = None
 
+                # Normalise persistent values
+                if (new_key == "persistent"):
+                    if value == "Implicit,Yes":
+                        value = "Yes, Implicit"
+                    elif value == "Yes,Implicit":
+                        value = "Yes, Implicit"
+                    elif value == "No,Implcit":
+                        value = "No, Implicit"
+                    elif value == "Implicit,No":
+                        value = "No, Implicit"
+                    elif value == "Yes,Explicit":
+                        value = "Yes, Explicit"
+                    elif value == "Explicit,Yes":
+                        value = "Yes, Explicit"
+                    elif value == "No,Explicit":
+                        value = "No, Explicit"
+                    elif value == "Explicit,No":
+                        value = "No, Explicit"
+
                 # Convert certain string numbers to integers (handle " " as null)
                 if new_key in {"count", "managers", "start_date", "recommended_by", "number_of_resolvers"}:
                     if value == " ":
