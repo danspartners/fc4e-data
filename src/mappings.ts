@@ -30,7 +30,7 @@ export const mappings: MappingTypeMapping = {
         resolvable: { type: 'keyword' },
         start_date: { 
             type: 'date',
-            format: 'yyyy' 
+            format: 'yyyy||yyyy-MM-dd' 
         },
         description: { type: 'text' },
         availability: { type: 'keyword' },
