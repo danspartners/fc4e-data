@@ -1,4 +1,5 @@
 from elasticsearch import Elasticsearch
+import os
 
 def get_es_client():
     es_url = os.getenv("ELASTICSEARCH_URL", "http://localhost:9200")  # Default to localhost if not set
