@@ -1,4 +1,4 @@
-import pandas as pd
+import csv
 import ast
 from countries import iso3_coordinates
 import json
@@ -8,14 +8,23 @@ def get_location_from_iso3(iso3):
     return iso3_coordinates.get(iso3.upper(), None)
 
 # Load the CSV file without headers
-file_path = "./data/Elastic_JSON.csv"  # Update with your actual file path
-df = pd.read_csv(file_path)
+file_path = os.getenv("FILE_PATH", "./data/Elastic_JSON.csv")  # Default file path
 
 def process_csv_to_object():
-    if "Facets" in df.columns:
-        facets_list = []
+    facets_list = []
 
-        for item in df["Facets"].dropna():  # Drop empty rows
+    with open(file_path, newline="", encoding="utf-8") as file:
+        reader = csv.DictReader(file)  # Read as a dictionary per row
+
+        if "Facets" not in reader.fieldnames:
+            print("Facets column not found in the CSV file.")
+            return None
+
+        for row in reader:
+            item = row.get("Facets")
+            if not item:
+                continue  # Skip empty rows
+
             try:
                 item_list = json.loads(item)  # load JSON
 
@@ -97,11 +106,7 @@ def process_csv_to_object():
                 facets_list.append(item_list)
 
             except Exception as e:
-                print('errorrrr')
-                print(e)
-                pass  # Skip invalid JSON entries or any other errors
+                print("Error processing row:", e)
+                continue  # Skip invalid JSON entries or other errors
 
         return facets_list  # Return the list of parsed dictionaries
-    else:
-        print("Facets column not found in the CSV file.")
-        return None

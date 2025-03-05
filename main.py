@@ -1,12 +1,12 @@
 import json
-from client import es_client
-from mappings import mappings
-from data import process_csv_to_object
+from elastic import es_client
+from elastic import mappings
+from format_data import process_csv_to_object
 
 # Call the function to get the processed data
 data = process_csv_to_object()
 
-INDEX_NAME = "fc4e"
+INDEX_NAME = os.getenv("INDEX_NAME", "fc4e")  # Default index
 
 def init_index(index_name, mappings):
     """Creates an index if it doesn't exist yet"""

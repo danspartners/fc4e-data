@@ -1,3 +1,11 @@
+from elasticsearch import Elasticsearch
+
+def get_es_client():
+    es_url = os.getenv("ELASTICSEARCH_URL", "http://localhost:9200")  # Default to localhost if not set
+    return Elasticsearch(es_url)
+
+es_client = get_es_client()
+
 mappings = {
     "mappings": {
         "properties": {
