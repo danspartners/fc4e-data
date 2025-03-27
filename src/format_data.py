@@ -54,23 +54,20 @@ def process_csv_to_object():
                         else:
                             value = None
 
+                    # Convert null to no for meta resolvers
+                    if (new_key == "metaresovers"):
+                        if value == None:
+                            value = "No"
+
                     # Normalise persistent values
                     if (new_key == "persistent"):
-                        if value == "Implicit,Yes":
+                        if value == "Implicit,Yes" or value == "Yes,Implicit":
                             value = "Yes, Implicit"
-                        elif value == "Yes,Implicit":
-                            value = "Yes, Implicit"
-                        elif value == "No,Implcit":
+                        elif value == "No,Implcit" or value == "Implicit,No":
                             value = "No, Implicit"
-                        elif value == "Implicit,No":
-                            value = "No, Implicit"
-                        elif value == "Yes,Explicit":
+                        elif value == "Yes,Explicit" or value == "Explicit,Yes":
                             value = "Yes, Explicit"
-                        elif value == "Explicit,Yes":
-                            value = "Yes, Explicit"
-                        elif value == "No,Explicit":
-                            value = "No, Explicit"
-                        elif value == "Explicit,No":
+                        elif value == "No,Explicit" or value == "Explicit,No":
                             value = "No, Explicit"
 
                     # Convert certain string numbers to integers (handle " " as null)
