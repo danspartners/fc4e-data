@@ -1,11 +1,8 @@
 import csv
 import ast
-from countries import iso3_coordinates
+import os
 import json
-
-def get_location_from_iso3(iso3):
-    """Fetch latitude and longitude from an ISO-3 country code."""
-    return iso3_coordinates.get(iso3.upper(), None)
+from src import get_location_from_iso3
 
 # Load the CSV file without headers
 file_path = os.getenv("FILE_PATH", "./data/Elastic_JSON.csv")  # Default file path

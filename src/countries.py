@@ -1,3 +1,7 @@
+def get_location_from_iso3(iso3):
+    """Fetch latitude and longitude from an ISO-3 country code."""
+    return iso3_coordinates.get(iso3.upper(), None)
+
 iso3_coordinates = {
     "ALB": {
       "lat": 41,

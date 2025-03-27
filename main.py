@@ -1,7 +1,8 @@
 import json
-from elastic import es_client
-from elastic import mappings
-from format_data import process_csv_to_object
+import os
+from src import es_client
+from src import mappings
+from src import process_csv_to_object
 
 # Call the function to get the processed data
 data = process_csv_to_object()

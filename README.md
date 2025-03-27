@@ -10,11 +10,16 @@ docker compose up
 pip install -r requirements.txt
 ```
 ## Step 3. Create and fill index
-Opens the source CSV file and injects this into the ES container. This uses some optional environment variables:
+Opens the source CSV file and injects this into the ES container.
+```sh
+python main.py
+```
+
+If needed, you can set some optional environment variables:
 
 - **`ELASTICSEARCH_URL`**: The URL of your Elasticsearch server, default to `"http://localhost:9200"`.
-- **`INDEX_NAME`**: ElasticSearch index you want to create/use, defaults to 4cfe
-- **`FILE_PATH`**: Points to CSV file location, defaults to ./data/Elastic_JSON.csv included in this repo.
+- **`INDEX_NAME`**: ElasticSearch index you want to create/use, defaults to **4cfe**
+- **`FILE_PATH`**: Points to CSV file location, defaults to **./data/Elastic_JSON.csv** included in this repo.
   
 ```sh
 ELASTICSEARCH_URL="http://localhost:9200" \
