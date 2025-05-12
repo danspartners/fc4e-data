@@ -7,14 +7,11 @@ from src import get_location_from_iso3
 file_path = os.getenv("FILE_PATH", "./data/data.csv")  # Default file path
 
 persistent_map = {
-    "Implicit,Yes": "Yes, Implicit",
-    "Yes,Implicit": "Yes, Implicit",
-    "No,Implcit": "No, Implicit",   # Note: typo preserved as in original
-    "Implicit,No": "No, Implicit",
-    "Yes,Explicit": "Yes, Explicit",
-    "Explicit,Yes": "Yes, Explicit",
-    "No,Explicit": "No, Explicit",
-    "Explicit,No": "No, Explicit",
+    "Explicit": "Explicit",
+    "Implicit,No": "Implicit, No",
+    "Implicit, No": "Implicit, No",
+    "Implicit,Yes": "Implicit, Yes",
+    "No": "No",
 }
 
 def process_csv_to_object():
