@@ -56,10 +56,6 @@ def process_csv_to_object():
                         except (ValueError, TypeError):
                             pass  # Ignore if it's not a valid number
 
-                # Merge Countries & ISO into one array of objects
-                countries = item_dict.get("countries", [])
-                iso_codes = item_dict.get("iso", [])
-
                 # Convert null to no for meta resolvers
                 if (new_key == "metaresolvers"):
                     if value == None:
