@@ -33,7 +33,10 @@ mappings = {
                     "location": {"type": "geo_point"}
                 }
             },
-            "identifier": {"type": "keyword"},
+            "identifier": {
+                "type": "keyword",
+                "normalizer": "lowercase"
+            },
             "persistent": {"type": "keyword"},
             "resolvable": {"type": "keyword"},
             "start_date": { 
@@ -51,6 +54,16 @@ mappings = {
             "resolution_type": {"type": "keyword"},
             "number_of_resolvers": {"type": "integer"},
             "resolution_topology": {"type": "keyword"}
+        }
+    },
+    "settings": {
+        "analysis": {
+            "normalizer": {
+                "lowercase": {
+                    "type": "custom",
+                    "filter": ["lowercase"]
+                }
+            }
         }
     }
 }
