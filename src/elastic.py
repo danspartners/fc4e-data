@@ -15,7 +15,7 @@ mappings = {
             "mpa": {"type": "keyword"},
             "count": {"type": "integer"},
             "gupri": {"type": "keyword"},
-            "label": {"type": "keyword"},
+            "label": {"type": "text"},
             "entity": {"type": "keyword"},
             "scheme": {"type": "keyword"},
             "status": {"type": "keyword"},
