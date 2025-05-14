@@ -35,7 +35,12 @@ mappings = {
             },
             "identifier": {
                 "type": "keyword",
-                "normalizer": "lowercase"
+                "fields": {
+                    "normalized": {
+                        "type": "keyword",
+                        "normalizer": "lowercase"
+                    }
+                }
             },
             "persistent": {"type": "keyword"},
             "resolvable": {"type": "keyword"},
