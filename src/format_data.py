@@ -8,10 +8,22 @@ file_path = os.getenv("FILE_PATH", "./data/data.csv")  # Default file path
 
 persistent_map = {
     "Explicit": "Explicit",
+    "Yes,Explicit": "Explicit, Yes",
+    "Yes, Explicit": "Explicit, Yes",
+    "Explicit,Yes": "Explicit, Yes",
+    "Explicit, Yes": "Explicit, Yes",
+    "Implicit": "Implicit",
+    "Implicit,Yes": "Implicit, Yes",
+    "Implicit, Yes": "Implicit, Yes",
+    "Yes,Implicit": "Implicit, Yes",
+    "Yes, Implicit": "Implicit, Yes",
     "Implicit,No": "Implicit, No",
     "Implicit, No": "Implicit, No",
-    "Implicit,Yes": "Implicit, Yes",
+    "No,Implicit": "Implicit, No",
+    "No, Implicit": "Implicit, No",
     "No": "No",
+    "Yes": "Yes",
+    "": "Unknown",
 }
 
 def process_csv_to_object():
@@ -42,13 +54,17 @@ def process_csv_to_object():
                     else:
                         value = None
 
+                if (new_key == "unique"):
+                    if value == "":
+                        value = "Unknown"
+
                 # Normalise persistent values
                 if (new_key == "persistent"):
                     value = persistent_map.get(value, value)
 
                 # Convert certain string numbers to integers (handle " " as null)
                 if new_key in {"count", "managers", "start_date", "recommended_by", "number_of_resolvers"}:
-                    if value == " ":
+                    if value == " " or value == "":
                         value = None
                     else:
                         try:
@@ -58,8 +74,8 @@ def process_csv_to_object():
 
                 # Convert null to no for meta resolvers
                 if (new_key == "metaresolvers"):
-                    if value == None:
-                        value = "No"
+                    if value == None or value == "":
+                        value = "Unknown"
 
                 item_dict[new_key] = value
 
@@ -76,6 +92,9 @@ def process_csv_to_object():
                     }
                     for i in range(max(len(countries), len(iso_codes)))
                 ]
+
+            else:
+                item_dict["countries"] = []
 
             item_dict.pop("iso", None)
 

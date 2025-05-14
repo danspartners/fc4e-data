@@ -30,7 +30,7 @@ def index_json():
     # Prepare bulk request
     bulk_ops = []
     for doc in data:
-        bulk_ops.append({"index": {"_index": INDEX_NAME, "_id": doc["id"]}})
+        bulk_ops.append({"index": {"_index": INDEX_NAME, "_id": doc["lodidn"]}})
         bulk_ops.append(doc)
 
     # Send data to Elasticsearch
